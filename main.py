@@ -78,7 +78,7 @@ def main():
     phi_total_values = phi_total(np.array(tempos), t0, fcm, hn, RH)
 
     # 🚀 Gerar e salvar o gráfico
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(8, 4))
     plt.plot(tempos, phi_total_values, marker='o', color='red', linestyle='-')
     plt.title(r'Coeficiente de Fluência Total $\phi(t, t_0)$ (Eurocode 2: 2023)')
     plt.xlabel('Tempo (dias)')
@@ -91,7 +91,7 @@ def main():
     pdf_name = get_pdf_name()
 
     # 🚀 Gerar o relatório em PDF com o nome especificado
-    gerar_relatorio(lv, bw, h, fyk, Es, vs, fcd, fyd, qtotal, Mtd, Msd, xLN_value, hn, tempos, phi_total_values, pdf_name)
+    gerar_relatorio(lv, bw, h, fyk, Es, vs, fcd, fyd, qtotal, Mtd, Msd, xLN_value, hn, tempos, phi_total_values,"phi_total.png", pdf_name)
 
     print(f"\n✅ Relatório gerado com sucesso: {pdf_name}\n")
 
