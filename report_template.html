@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Relatório Técnico - Fluência Eurocode 2</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1, h2 { color: #003366; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        img { width: 80%; margin: 20px 0; }
+        .equation { font-family: "Times New Roman", serif; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h1>Relatório Técnico - Fluência Eurocode 2</h1>
+    
+    <h2>1. Dados de Entrada</h2>
+    <p><b>Vão Efetivo:</b> {{ lv }} mm</p>
+    <p><b>Largura da Viga:</b> {{ bw }} mm</p>
+    <p><b>Altura da Viga:</b> {{ h }} mm</p>
+
+    <h2>2. Propriedades do Material</h2>
+    <table>
+        <tr><th>Propriedade</th><th>Valor</th></tr>
+        <tr><td>Tensão de Escoamento do Aço (fyk)</td><td>{{ fyk }} MPa</td></tr>
+        <tr><td>Módulo de Elasticidade do Aço (Es)</td><td>{{ Es }} GPa</td></tr>
+        <tr><td>Coeficiente de Poisson do Aço (vs)</td><td>{{ vs }}</td></tr>
+    </table>
+
+    <h2>3. Propriedades de Cálculo</h2>
+    <table>
+        <tr><th>Propriedade</th><th>Valor</th></tr>
+        <tr><td>Resistência de Cálculo do Concreto (fcd)</td><td>{{ fcd }} MPa</td></tr>
+        <tr><td>Resistência de Cálculo do Aço (fyd)</td><td>{{ fyd }} MPa</td></tr>
+    </table>
+
+    <h2>4. Cargas e Momentos</h2>
+    <table>
+        <tr><th>Propriedade</th><th>Valor</th></tr>
+        <tr><td>Carga Total Combinada (qtotal)</td><td>{{ qtotal }} kN/m</td></tr>
+        <tr><td>Momento de Cálculo (Mtd)</td><td>{{ Mtd }} kN·m</td></tr>
+        <tr><td>Momento Solicitante (Msd)</td><td>{{ Msd }} kN·m</td></tr>
+    </table>
+
+    <h2>5. Cálculo Estrutural</h2>
+    <table>
+        <tr><th>Propriedade</th><th>Valor</th></tr>
+        <tr><td>Espessura Equivalente do Elemento (hn)</td><td>{{ hn }} mm</td></tr>
+        <tr><td>Raiz escolhida da Linha Neutra (xLN)</td><td>{{ xLN_value }} mm</td></tr>
+    </table>
+
+    <h2>6. Coeficiente de Fluência Total</h2>
+    <table>
+        <tr><th>Tempo (dias)</th><th>φ(t, t₀)</th></tr>
+        {% for t, phi in zip(tempos, phi_total_values) %}
+        <tr><td>{{ t }}</td><td>{{ phi }}</td></tr>
+        {% endfor %}
+    </table>
+
+    <h2>7. Gráficos</h2>
+    <img src="phi_total.png" alt="Coeficiente de Fluência Total">
+
+    <h2>8. Conclusão</h2>
+    <p>O coeficiente de fluência total varia conforme o tempo, conforme os cálculos realizados.</p>
+
+</body>
+</html>
